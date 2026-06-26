@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio of Design & Communication Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:    #1c1510;
+      --cream:  #faf7f2;
+      --warm:   #f2ece0;
+      --rust:   #c4521e;
+      --forest: #2f6644;
+      --indigo: #3d3d8f;
+      --muted:  #7c6e60;
+      --border: #e0d8cc;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); }
+
+    .hero {
+      background: var(--ink); color: var(--cream);
+      padding: 64px 52px 52px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 60% at 90% 20%, rgba(196,82,30,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(47,102,68,0.15) 0%, transparent 50%);
+    }
+    .hero-eyebrow { font-size: 10.5px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--rust); font-weight: 600; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.08; max-width: 680px; position: relative; }
+    .hero h1 em { font-style: italic; font-weight: 400; color: #dcc9a8; }
+    .hero-desc { margin-top: 22px; font-size: 14px; color: #a89e90; line-height: 1.75; max-width: 560px; font-weight: 300; position: relative; }
+    .hero-desc b { color: #ede5d8; font-weight: 500; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; position: relative; }
+    .hero-pill { font-size: 11px; font-weight: 500; letter-spacing: 0.5px; padding: 5px 14px; border-radius: 20px; border: 1px solid; }
+    .pill-rust   { color: #e8a07a; border-color: rgba(232,160,122,0.35); }
+    .pill-forest { color: #7ec49a; border-color: rgba(126,196,154,0.35); }
+    .pill-indigo { color: #9999d8; border-color: rgba(153,153,216,0.35); }
+
+    main { max-width: 980px; margin: 0 auto; padding: 56px 32px 88px; }
+
+    .section { margin-bottom: 72px; }
+    .section-header { display: flex; align-items: flex-end; gap: 14px; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .sec-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--rust); flex-shrink: 0; margin-bottom: 2px; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700; line-height: 1; }
+    .sec-note { margin-left: auto; font-size: 11.5px; color: var(--muted); font-style: italic; text-align: right; max-width: 220px; line-height: 1.5; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(28,21,16,0.11); }
+    .vis-rust:hover   { border-color: var(--rust); }
+    .vis-forest:hover { border-color: var(--forest); }
+    .vis-indigo:hover { border-color: var(--indigo); }
+
+    .card-visual { position: relative; height: 148px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .card-visual-inner { position: absolute; inset: 0; }
+    .vis-rust   .card-visual-inner { background: linear-gradient(135deg, #2a1208 0%, #5c1f0a 40%, #c4521e 100%); }
+    .vis-forest .card-visual-inner { background: linear-gradient(135deg, #0d1f14 0%, #1a4228 40%, #2f6644 80%, #3e8457 100%); }
+    .vis-indigo .card-visual-inner { background: linear-gradient(135deg, #0e0e2a 0%, #1e1e5a 40%, #3d3d8f 80%, #5555b0 100%); }
+    .card-visual-inner::before { content: ''; position: absolute; width: 180px; height: 180px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); top: -60px; right: -40px; }
+    .card-visual-inner::after  { content: ''; position: absolute; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.06); bottom: -30px; left: -20px; }
+    .card-visual-text { position: relative; z-index: 1; text-align: center; padding: 16px; }
+    .card-icon { font-size: 28px; display: block; margin-bottom: 8px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+    .card-visual-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.2; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+    .card-visual-sub { font-size: 10px; color: rgba(255,255,255,0.6); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+    .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+    .card-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 7px; }
+    .tag-rust   { color: var(--rust); }
+    .tag-forest { color: var(--forest); }
+    .tag-indigo { color: var(--indigo); }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 700; line-height: 1.3; margin-bottom: 5px; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.55; margin-bottom: 14px; flex: 1; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+
+    .badge { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+    .badge-partial { background: #fff4ee; color: var(--rust); border: 1px solid #f5d0be; }
+    .badge-solo    { background: #eef6f1; color: var(--forest); border: 1px solid #b8d9c5; }
+
+    .btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; text-decoration: none; padding: 7px 15px; border-radius: 6px; white-space: nowrap; transition: all 0.18s ease; font-family: 'DM Sans', sans-serif; }
+    .btn-dark { background: var(--ink); color: var(--cream); }
+    .btn-dark:hover { background: var(--rust); }
+
+    .note { display: flex; gap: 10px; align-items: flex-start; background: #fffbf5; border: 1px dashed #d8cbb8; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .note b { color: var(--ink); font-weight: 500; }
+
+    footer { background: var(--ink); color: #7c6e60; text-align: center; padding: 26px 24px; font-size: 12px; font-weight: 300; }
+
+    .reveal { opacity: 0; transform: translateY(20px); animation: reveal 0.55s ease forwards; }
+    .reveal:nth-child(1) { animation-delay: 0.05s; }
+    .reveal:nth-child(2) { animation-delay: 0.15s; }
+    .reveal:nth-child(3) { animation-delay: 0.25s; }
+    .reveal:nth-child(4) { animation-delay: 0.35s; }
+    .reveal:nth-child(5) { animation-delay: 0.45s; }
+    .reveal:nth-child(6) { animation-delay: 0.55s; }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+
+    .video-card { max-width: 680px; }
+    .video-wrapper { position: relative; background: linear-gradient(135deg,#0d1f14 0%,#1a4228 40%,#2f6644 80%,#3e8457 100%); border-radius: 10px 10px 0 0; overflow: hidden; }
+    .video-wrapper video { width: 100%; display: block; border-radius: 10px 10px 0 0; max-height: 380px; object-fit: cover; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 24px 36px; }
+      main  { padding: 36px 20px 60px; }
+      .sec-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <p class="hero-eyebrow">Communications Associate · Sample Work Submission</p>
+    <h1>Portfolio of <em>Design &amp;<br />Communication</em> Work</h1>
+    <p class="hero-desc">A curated selection of <b>social media graphics, newsletter editions, and presentations</b> — showcasing content creation, visual storytelling, and design skills.</p>
+    <div class="hero-pills">
+      <span class="hero-pill pill-rust">Social Media</span>
+      <span class="hero-pill pill-forest">Newsletters</span>
+      <span class="hero-pill pill-indigo">Presentations</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 01 SOCIAL MEDIA -->
+    <section class="section">
+      <div class="section-header">
+        <span class="sec-num">01 —</span>
+        <h2 class="sec-title">Social Media Posts</h2>
+      </div>
+      <div class="grid-2">
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">✦</span>
+              <div class="card-visual-title">Launch Girls Carousel Post</div>
+              <div class="card-visual-sub">8 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Social Media</p>
+            <h3 class="card-title">Launch Girls — Advocacy Carousel</h3>
+            <p class="card-desc">An 8-slide storytelling carousel that follows a girl's journey — from being silenced by societal conditioning at home and school, to finding her voice in a Girl Boss classroom. Ends with the impact: 25,000 girls across 16 countries unlearning the same cycle.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/jr5igb477jfwr30" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◈</span>
+              <div class="card-visual-title">Launch Girls Carousel Post</div>
+              <div class="card-visual-sub">6 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Social Media · 6 Pages</p>
+            <h3 class="card-title">Launch Girls — Awareness Carousel</h3>
+            <p class="card-desc">A 6-slide carousel building the case for why programmes like Girl Boss are necessary — from financial literacy gaps and internalized sexism research, to what school doesn't teach girls, and the generational impact of not addressing it early.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/v2c7fdbkoq1vkcw" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◉</span>
+              <div class="card-visual-title">Core Team</div>
+              <div class="card-visual-sub">2 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Social Media · 2 Pages</p>
+            <h3 class="card-title">Core Team Feature</h3>
+            <p class="card-desc">Portrait-format posts for team introductions, balancing personality.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/veqvpu7hx1icypz" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">❋</span>
+              <div class="card-visual-title">Call for Contributions</div>
+              <div class="card-visual-sub">Poster · 1 page</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Social Graphic / Poster</p>
+            <h3 class="card-title">Call for Contributions Poster</h3>
+            <p class="card-desc">Vintage editorial-style graphic blending typography and layout.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/12mgw021dg6qhs0" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">▶</span>
+              <div class="card-visual-title">Team Heads Video</div>
+              <div class="card-visual-sub">4 pages · Reel</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Social Media · Reel / 4 Pages</p>
+            <h3 class="card-title">Team Heads — Video Format</h3>
+            <p class="card-desc">Vertical reel-style format of the team feature series — motion-adapted for Instagram Stories and Reels.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/qoqlrazcannayn9" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-rust reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◼</span>
+              <div class="card-visual-title">Edubenchers</div>
+              <div class="card-visual-sub">Brochure Post · 1 page</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-rust">Brochure / Social Post</p>
+            <h3 class="card-title">Edubenchers — Brochure Post</h3>
+            <p class="card-desc">Designed brochure-style post for Edubenchers.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/i6ix9mw5rv4q7f8" target="_blank" rel="noreferrer" class="btn btn-dark">View Design ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 NEWSLETTERS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="sec-num">02 —</span>
+        <h2 class="sec-title">Newsletter Designs</h2>
+        <span class="sec-note">EconMosaic — 36-page magazine editions</span>
+      </div>
+      <div class="note">
+        <span class="note-icon">ℹ</span>
+        <p><b>Note on March 2025 edition:</b> The contents page, the Maggie content page, and the last page were not designed by me. All other pages across all three editions were independently designed.</p>
+      </div>
+      <div class="grid-3">
+
+        <div class="card vis-forest reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◧</span>
+              <div class="card-visual-title">EconMosaic</div>
+              <div class="card-visual-sub">March 2025 · 36 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-forest">Newsletter</p>
+            <h3 class="card-title">March 2025 Edition</h3>
+            <p class="card-desc">Bold, vibrant colour palette with illustrated backgrounds throughout. Typography and layout are informal and playful — less structured, more experimental with how the text sits.</p>
+            <div class="card-footer">
+              <span class="badge badge-partial">Partial contribution</span>
+              <a href="https://canva.link/07askrx3d7smwxn" target="_blank" rel="noreferrer" class="btn btn-dark">View ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-forest reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◧</span>
+              <div class="card-visual-title">EconMosaic</div>
+              <div class="card-visual-sub">Dec 2025 · 36 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-forest">Newsletter</p>
+            <h3 class="card-title">December 2025 Edition</h3>
+            <p class="card-desc">Clean, formal, and professional aesthetic. Lots of white space and generous margins give it breathing room. Minimal colour, structured layout — the opposite energy from March.</p>
+            <div class="card-footer">
+              <span class="badge badge-solo">Independently designed</span>
+              <a href="https://canva.link/8wb52zg8pvemgqh" target="_blank" rel="noreferrer" class="btn btn-dark">View ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-forest reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">◧</span>
+              <div class="card-visual-title">EconMosaic</div>
+              <div class="card-visual-sub">Jan–Feb 2026 · 36 pages</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-forest">Newsletter</p>
+            <h3 class="card-title">Jan–Feb 2026 Edition</h3>
+            <p class="card-desc">Creative and professional at the same time — small custom illustrations scattered through the pages, but the overall layout stays polished and organised. Best of both worlds.</p>
+            <div class="card-footer">
+              <span class="badge badge-solo">Independently designed</span>
+              <a href="https://canva.link/vl4xiavu9t5epfs" target="_blank" rel="noreferrer" class="btn btn-dark">View ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 PRESENTATIONS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="sec-num">03 —</span>
+        <h2 class="sec-title">Presentations</h2>
+      </div>
+      <div class="grid-2">
+
+        <div class="card vis-indigo reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">▣</span>
+              <div class="card-visual-title">Monopoly Capital</div>
+              <div class="card-visual-sub">24 slides</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-indigo">Presentation · 24 Slides</p>
+            <h3 class="card-title">Monopoly Capital</h3>
+            <p class="card-desc">Research-driven deck with cohesive visual design, data layout, and structured storytelling.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/gnaojtpor2x7lku" target="_blank" rel="noreferrer" class="btn btn-dark">View Slides ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card vis-indigo reveal">
+          <div class="card-visual">
+            <div class="card-visual-inner"></div>
+            <div class="card-visual-text">
+              <span class="card-icon">▤</span>
+              <div class="card-visual-title">Findings</div>
+              <div class="card-visual-sub">21 slides</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-tag tag-indigo">Presentation · 21 Slides</p>
+            <h3 class="card-title">Findings — Manipur &amp; West Bengal</h3>
+            <p class="card-desc">Field research findings deck translating on-ground data into clear, compelling visual narratives.</p>
+            <div class="card-footer">
+              <a href="https://canva.link/cvmsmte10d33lco" target="_blank" rel="noreferrer" class="btn btn-dark">View Slides ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04 VIDEO -->
+    <section class="section">
+      <div class="section-header">
+        <span class="sec-num">04 —</span>
+        <h2 class="sec-title">Video &amp; Storytelling</h2>
+        <span class="sec-note">Tamil-language documentary short</span>
+      </div>
+
+      <div class="card vis-forest video-card">
+        <div class="video-wrapper">
+          <video controls preload="metadata">
+            <source src="documentary.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="card-body">
+          <p class="card-tag tag-forest">Tamil Short Film</p>
+          <h3 class="card-title">Coovum River — Urban Water Pollution</h3>
+          <p class="card-desc">A Tamil-language short video documenting the Coovum river's transformation from a historic waterway to a polluted urban drain. Combines on-ground storytelling with data on wastewater management and civic neglect — making the case for sustainable river governance.</p>
+          <div class="card-footer">
+            <span class="badge badge-partial">Partial contribution (2:00 → end)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Communications Associate · Portfolio submission</p>
+  </footer>
+
+</body>
+</html>
